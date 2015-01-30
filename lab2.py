@@ -8,13 +8,23 @@ TYPES = ["String","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean",
 
 def myPrint(i, string):
     if i == len(TYPES) - 1:
-        print(string)
+        #print(string)
+        output.write(string + "\n")
     else:
-        print(string, end=",")
+        #print(string, end=",")
+        output.write(string + ",")
 
-#read the file
+#open the output file
+output = open("zoo.csv", "w")
+
+#print out the category names
+for i in range(len(NAMES)):
+    myPrint(i, NAMES[i])
+
+#read the data file
 data = open("zoo.data", "r")
 
+#print out the data
 for line in data:
     #remvoe newline char
     line = line.strip("\n")
@@ -37,4 +47,5 @@ for line in data:
             #type was not Boolean, Numeric, or String
             myPrint(i, "Unknown")
 
-
+#close the output file
+output.close()
